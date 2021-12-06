@@ -1,6 +1,8 @@
 from django.contrib import admin
-from .views import main
+from django.urls import path
+from .views import RoomView
+
 
 urlpatterns = [
-    path('', main),
+    path('room', RoomView.as_view()),
 ]
