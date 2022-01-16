@@ -40,16 +40,16 @@ export default class CreateRoomPage extends Component {
 
     handleRoomButtonPressed() {
         const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
                 votes_to_skip: this.state.votesToSkip,
                 guest_can_pause: this.state.guestCanPause,
-            })
+            }),
         };
-        fetch('/api/create-room', requestOptions)
+        fetch("/api/create-room", requestOptions)
         .then((response) => response.json())
-        .then((data) => console.log(data));
+        .then((data) => this.props.history.push('/room/' + data.code));
     }
 
     render() {
@@ -66,7 +66,7 @@ export default class CreateRoomPage extends Component {
                             Guest Control of Playback state
                         </div>
                     </FormHelperText>
-                    <RadioGroup row defaultValeu="true" onChange={this.handleGuestCanPauseChange}>
+                    <RadioGroup row defaultValue="true" onChange={this.handleGuestCanPauseChange}>
                         <FormControlLabel
                             value="true"
                             control={<Radio color="primary"/>}
